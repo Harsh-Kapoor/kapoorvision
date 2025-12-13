@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kapoor Vision Care | Premium Eyewear & Optics</title>
+    <meta name="description" content="Kapoor Vision Care - Style and clarity come together. Premium frames, advanced lenses, and sunglasses. A unit of Chotanagpur Optical.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#0F172A',
+                            gold: '#D4AF37',
+                            light: '#F8FAFC',
+                            accent: '#3B82F6'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles for nuances not covered by Tailwind utility classes */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .hero-pattern {
+            background-color: #0f172a;
+            background-image: url('https://images.unsplash.com/photo-1570222094114-28a9d88a27e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* View Switching logic */
+        .view-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .view-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased flex flex-col min-h-screen">
+
+    <!-- Top Bar -->
+    <div class="bg-brand-blue text-white py-2 text-xs md:text-sm">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <p><i class="fas fa-truck text-brand-gold mr-2"></i>All Over India Delivery Available</p>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-brand-gold transition"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-brand-gold transition"><i class="fab fa-facebook"></i></a>
+                <!-- Updated Top Bar WhatsApp Link -->
+                <a href="https://wa.me/919334780350" target="_blank" class="hover:text-brand-gold transition"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 glass-effect border-b border-gray-100 shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="#home" class="flex flex-col group" onclick="app.router('#home')">
+                    <span class="text-2xl font-bold text-brand-blue tracking-tight group-hover:text-brand-accent transition">Kapoor Vision Care</span>
+                    <span class="text-[10px] text-slate-500 font-medium tracking-wider uppercase">Unit of Chotanagpur Optical</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" onclick="app.router('#home')" class="text-slate-600 hover:text-brand-blue font-medium transition">Home</a>
+                    <a href="#frames" onclick="app.router('#frames')" class="text-slate-600 hover:text-brand-blue font-medium transition">Frames</a>
+                    <a href="#sunglasses" onclick="app.router('#sunglasses')" class="text-slate-600 hover:text-brand-blue font-medium transition">Sunglasses</a>
+                    <a href="#home" onclick="document.getElementById('about').scrollIntoView()" class="text-slate-600 hover:text-brand-blue font-medium transition">About</a>
+                    <a href="#home" onclick="document.getElementById('contact').scrollIntoView()" class="bg-brand-blue text-white px-6 py-2.5 rounded-full font-medium hover:bg-slate-800 transition shadow-lg transform hover:scale-105">
+                        Visit Store
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-brand-blue text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="flex flex-col p-4 space-y-4">
+                <a href="#home" onclick="app.router('#home')" class="text-slate-700 font-medium hover:text-brand-accent">Home</a>
+                <a href="#frames" onclick="app.router('#frames')" class="text-slate-700 font-medium hover:text-brand-accent">Frames</a>
+                <a href="#sunglasses" onclick="app.router('#sunglasses')" class="text-slate-700 font-medium hover:text-brand-accent">Sunglasses</a>
+                <a href="#contact" class="text-brand-accent font-bold">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="app-root" class="flex-grow">
+        
+        <!-- === HOME VIEW === -->
+        <div id="home-view" class="view-section active">
+            <!-- Hero Section -->
+            <section id="home" class="hero-pattern relative min-h-[600px] flex items-center justify-center text-center px-4">
+                <div class="relative z-10 max-w-4xl mx-auto">
+                    <span class="inline-block py-1 px-3 rounded-full bg-brand-gold/20 text-brand-gold border border-brand-gold/50 text-sm font-semibold mb-6 animate-pulse">
+                        Est. 1987
+                    </span>
+                    <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                        Where Style & Clarity <br> Come Together Seamlessly
+                    </h1>
+                    <p class="text-slate-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+                        Explore our diverse collection of premium frames, advanced powered lenses, and stylish sunglasses fitting every prescription need.
+                    </p>
+                    <div class="flex flex-col md:flex-row gap-4 justify-center">
+                        <a href="#frames" onclick="app.router('#frames')" class="bg-brand-gold text-brand-blue px-8 py-3.5 rounded-full font-bold hover:bg-yellow-400 transition shadow-lg text-lg">
+                            View Frames
+                        </a>
+                        <a href="#sunglasses" onclick="app.router('#sunglasses')" class="bg-transparent border-2 border-white text-white px-8 py-3.5 rounded-full font-bold hover:bg-white hover:text-brand-blue transition text-lg">
+                            Shop Sunglasses
+                        </a>
+                    </div>
+                </div>
+                <!-- Bottom Fade -->
+                <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-slate-50 to-transparent"></div>
+            </section>
+
+            <!-- Today's Offers Section -->
+            <section id="offers" class="py-12 -mt-12 relative z-20 px-4">
+                <div class="container mx-auto">
+                    <div class="bg-white rounded-2xl shadow-xl p-8 border border-slate-100">
+                        <div class="flex items-center justify-between mb-6 border-b border-gray-100 pb-4">
+                            <h2 class="text-2xl md:text-3xl font-bold text-brand-blue"><i class="fas fa-tag text-brand-accent mr-3"></i>Today's Exclusive Offers</h2>
+                            <span class="text-sm font-medium text-red-500 animate-bounce">Limited Time Only</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="bg-red-50 p-6 rounded-xl border border-red-100 text-center card-hover">
+                                <div class="text-red-500 text-3xl mb-3"><i class="fas fa-glasses"></i></div>
+                                <h3 class="font-bold text-xl text-red-700 mb-2">Buy 1 Get 1 Free</h3>
+                                <p class="text-slate-600">On select trendy Sunglasses.</p>
+                            </div>
+                            <div class="bg-blue-50 p-6 rounded-xl border border-blue-100 text-center card-hover">
+                                <div class="text-brand-accent text-3xl mb-3"><i class="fas fa-percent"></i></div>
+                                <h3 class="font-bold text-xl text-brand-blue mb-2">10% to 40% OFF</h3>
+                                <p class="text-slate-600">On all frame and lens orders.</p>
+                            </div>
+                            <div class="bg-amber-50 p-6 rounded-xl border border-amber-100 text-center card-hover">
+                                <div class="text-amber-500 text-3xl mb-3"><i class="fas fa-gift"></i></div>
+                                <h3 class="font-bold text-xl text-amber-700 mb-2">Free Sunglasses</h3>
+                                <p class="text-slate-600">On orders above ₹3999.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Collections -->
+            <section id="products" class="py-16 px-4">
+                <div class="container mx-auto">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-brand-blue mb-4">Our Collections</h2>
+                        <div class="w-20 h-1 bg-brand-gold mx-auto rounded"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Category 1: Frames -->
+                        <div onclick="app.router('#frames')" class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1577803645773-f96470509666?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Frames" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                                <h3 class="text-white text-xl font-bold">Designer Frames</h3>
+                                <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition">View Collection &rarr;</p>
+                            </div>
+                        </div>
+                        <!-- Category 2: Power Glasses (Redirects to frames for now) -->
+                        <div onclick="app.router('#frames')" class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1591076482161-42ce6da69f67?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Power Glasses" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                                <h3 class="text-white text-xl font-bold">Power Glasses</h3>
+                                <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition">View Collection &rarr;</p>
+                            </div>
+                        </div>
+                        <!-- Category 3: Contact Lenses (Static for now) -->
+                        <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Contact Lenses" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                                <h3 class="text-white text-xl font-bold">Contact Lenses</h3>
+                                <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition">Coming Soon</p>
+                            </div>
+                        </div>
+                        <!-- Category 4: Sunglasses -->
+                        <div onclick="app.router('#sunglasses')" class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer">
+                            <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sunglasses" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                                <h3 class="text-white text-xl font-bold">Sunglasses</h3>
+                                <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition">View Collection &rarr;</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Choose Us / Specialities -->
+            <section class="py-16 bg-slate-100 px-4">
+                <div class="container mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-bold text-brand-blue mb-6">Why Choose Kapoor Vision Care?</h2>
+                            <p class="text-slate-600 mb-8 leading-relaxed">
+                                We don't just sell glasses; we engineer vision. Our commitment to technology and style ensures you get the best fit every single time.
+                            </p>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-blue text-white flex items-center justify-center text-xl">
+                                        <i class="fas fa-certificate"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-bold text-brand-blue">Premium & Branded</h4>
+                                        <p class="text-sm text-slate-600">Extensive collection of branded frames and lenses at the best market prices.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-blue text-white flex items-center justify-center text-xl">
+                                        <i class="fas fa-robot"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-bold text-brand-blue">Precision Technology</h4>
+                                        <p class="text-sm text-slate-600">100% automatic fitting machines. Zero manual errors, perfect alignment.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-blue text-white flex items-center justify-center text-xl">
+                                        <i class="fas fa-shipping-fast"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-bold text-brand-blue">Pan-India Delivery</h4>
+                                        <p class="text-sm text-slate-600">Order from anywhere in India and get it delivered safely to your doorstep.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative h-full min-h-[400px]">
+                            <img src="https://images.unsplash.com/photo-1562916120-1b20756770e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Optician working" class="rounded-2xl shadow-2xl w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <!-- About Us Section -->
+            <section id="about" class="py-16 px-4">
+                <div class="container mx-auto max-w-4xl text-center">
+                    <h2 class="text-3xl font-bold text-brand-blue mb-6">About Us</h2>
+                    <div class="text-slate-600 leading-relaxed space-y-4">
+                        <p>
+                            <span class="font-bold text-brand-blue">Kapoor Vision Care</span> (a unit of Chotanagpur Optical) embarked on its journey in 2018 with a singular mission: to deliver outstanding customer service and professional advice.
+                        </p>
+                        <p>
+                            We believe in helping you attain perfect vision while rocking a look you adore. Whether you need sophisticated progressives, easy-to-wear daily lenses, or statement sunglasses, we ensure you discover the ideal match for both comfort and vision correction.
+                        </p>
+                    </div>
+                    <div class="mt-8 flex justify-center gap-4 text-brand-blue text-2xl">
+                        <i class="fas fa-glasses opacity-50"></i>
+                        <i class="fas fa-eye opacity-50"></i>
+                        <i class="fas fa-sun opacity-50"></i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action Banner -->
+            <section class="bg-brand-blue py-16 px-4 relative overflow-hidden">
+                <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-brand-accent opacity-10 rounded-full blur-3xl"></div>
+                <div class="container mx-auto text-center relative z-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Ready to elevate your style?</h2>
+                    <p class="text-slate-300 mb-8 max-w-2xl mx-auto">Come visit us soon to find your ideal powered frames or sunglasses, with lenses that offer ultimate comfort.</p>
+                    <a href="#home" onclick="document.getElementById('contact').scrollIntoView()" class="bg-white text-brand-blue px-8 py-3 rounded-full font-bold hover:bg-brand-gold hover:text-white transition inline-flex items-center gap-2">
+                        <i class="fas fa-map-marker-alt"></i> Visit Our Store
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- === LISTING VIEW (Frames / Sunglasses) === -->
+        <div id="listing-view" class="view-section pt-8 pb-16 px-4 bg-slate-50 min-h-screen">
+            <div class="container mx-auto">
+                <!-- Breadcrumbs -->
+                <div class="flex items-center text-sm text-slate-500 mb-6">
+                    <a href="#home" onclick="app.router('#home')" class="hover:text-brand-blue">Home</a>
+                    <i class="fas fa-chevron-right mx-2 text-xs"></i>
+                    <span id="page-title-breadcrumb" class="font-medium text-brand-blue capitalize">Collection</span>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-8">
+                    <!-- Sidebar Filters -->
+                    <aside class="w-full md:w-64 flex-shrink-0">
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 sticky top-24">
+                            <h3 class="font-bold text-lg text-brand-blue mb-4 flex items-center justify-between">
+                                Filters <i class="fas fa-filter text-xs text-slate-400"></i>
+                            </h3>
+                            
+                            <!-- Brand Filter -->
+                            <div class="mb-6">
+                                <h4 class="text-sm font-semibold text-slate-700 mb-3 uppercase tracking-wider">Brands</h4>
+                                <div id="brand-filters" class="space-y-2">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+
+                            <!-- Price Filter -->
+                            <div class="mb-6">
+                                <h4 class="text-sm font-semibold text-slate-700 mb-3 uppercase tracking-wider">Price Range</h4>
+                                <input type="range" id="price-range" min="0" max="10000" step="500" class="w-full accent-brand-blue cursor-pointer">
+                                <div class="flex justify-between text-xs text-slate-500 mt-2">
+                                    <span>₹0</span>
+                                    <span id="price-value">₹10000</span>
+                                </div>
+                            </div>
+                            
+                            <button onclick="app.resetFilters()" class="w-full py-2 border border-slate-200 text-slate-600 rounded-lg hover:bg-slate-50 text-sm font-medium transition">Reset Filters</button>
+                        </div>
+                    </aside>
+
+                    <!-- Main Grid -->
+                    <div class="flex-grow">
+                        <!-- Header -->
+                        <div class="flex flex-col sm:flex-row justify-between items-center mb-6 bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                            <h2 id="listing-title" class="text-2xl font-bold text-brand-blue capitalize mb-4 sm:mb-0">Product Collection</h2>
+                            <div class="flex items-center gap-3">
+                                <label for="sort-select" class="text-sm text-slate-500">Sort by:</label>
+                                <select id="sort-select" onchange="app.handleSort()" class="border-gray-200 rounded-lg text-sm focus:ring-brand-accent focus:border-brand-accent p-2 bg-slate-50">
+                                    <option value="default">Featured</option>
+                                    <option value="price-low">Price: Low to High</option>
+                                    <option value="price-high">Price: High to Low</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Product Grid -->
+                        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- Populated by JS -->
+                        </div>
+
+                        <!-- Pagination -->
+                        <div id="pagination" class="flex justify-center mt-12 gap-2">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- === PRODUCT DETAIL VIEW === -->
+        <div id="product-view" class="view-section pt-8 pb-16 px-4 bg-white min-h-screen">
+            <div class="container mx-auto">
+                 <!-- Breadcrumbs -->
+                 <div class="flex items-center text-sm text-slate-500 mb-6">
+                    <a href="#home" onclick="app.router('#home')" class="hover:text-brand-blue">Home</a>
+                    <i class="fas fa-chevron-right mx-2 text-xs"></i>
+                    <a href="#" id="back-to-category" class="hover:text-brand-blue capitalize">Collection</a>
+                    <i class="fas fa-chevron-right mx-2 text-xs"></i>
+                    <span id="detail-breadcrumb" class="font-medium text-brand-blue truncate max-w-[200px]">Product Name</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Image -->
+                    <div class="bg-slate-50 rounded-2xl p-8 flex items-center justify-center">
+                        <img id="detail-image" src="" alt="Product Detail" class="max-h-[400px] w-auto object-contain drop-shadow-xl hover:scale-105 transition duration-500">
+                    </div>
+
+                    <!-- Info -->
+                    <div>
+                        <span id="detail-brand" class="text-sm font-bold text-brand-gold uppercase tracking-widest mb-2 block">Brand</span>
+                        <h1 id="detail-name" class="text-3xl md:text-4xl font-bold text-brand-blue mb-4">Product Name</h1>
+                        <div class="text-2xl font-bold text-slate-800 mb-6" id="detail-price">₹0</div>
+
+                        <div class="prose prose-slate mb-8">
+                            <p id="detail-desc" class="text-slate-600 leading-relaxed">Description goes here.</p>
+                            <ul class="list-disc pl-5 mt-4 space-y-1 text-slate-600">
+                                <li>Premium build quality</li>
+                                <li>1-year warranty</li>
+                                <li>Includes protective case and cloth</li>
+                            </ul>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <a id="detail-whatsapp" href="#" target="_blank" class="flex-1 bg-green-500 text-white text-center py-4 rounded-xl font-bold hover:bg-green-600 transition shadow-lg flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-xl"></i> Buy / Enquire
+                            </a>
+                            <button onclick="window.history.back()" class="px-6 py-4 border border-slate-200 rounded-xl font-medium hover:bg-slate-50 transition">
+                                Go Back
+                            </button>
+                        </div>
+                        
+                        <div class="mt-8 pt-8 border-t border-slate-100 flex items-center gap-4 text-sm text-slate-500">
+                            <div class="flex items-center gap-2"><i class="fas fa-shield-alt text-brand-blue"></i> Authentic</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-truck text-brand-blue"></i> Fast Delivery</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-undo text-brand-blue"></i> Easy Returns</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer / Contact (Global) -->
+    <footer id="contact" class="bg-slate-900 text-slate-300 py-12 px-4 border-t border-slate-800">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Brand Info -->
+            <div>
+                <h3 class="text-2xl font-bold text-white mb-2">Kapoor Vision Care</h3>
+                <p class="text-xs text-slate-500 mb-4 uppercase tracking-widest">Unit of Chotanagpur Optical</p>
+                <p class="mb-4">Delivering clarity and style since 1987. Your trusted partner for complete vision solutions.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-accent transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-accent transition"><i class="fab fa-instagram"></i></a>
+                    <!-- Updated Footer WhatsApp Link -->
+                    <a href="https://wa.me/919334780350" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-accent transition"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-white font-bold text-lg mb-4">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#home" onclick="app.router('#home')" class="hover:text-brand-gold transition">Home</a></li>
+                    <li><a href="#frames" onclick="app.router('#frames')" class="hover:text-brand-gold transition">Frames</a></li>
+                    <li><a href="#sunglasses" onclick="app.router('#sunglasses')" class="hover:text-brand-gold transition">Sunglasses</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div>
+                <h4 class="text-white font-bold text-lg mb-4">Contact Us</h4>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-map-marker-alt mt-1 text-brand-gold"></i>
+                        <span>1st Floor, Shree Sai Tower, Debuka Nursing Home Lane, Circular Road, Lalpur,<br>Ranchi, Jharkhand (India)</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-phone-alt text-brand-gold"></i>
+                        <span>+91 93347 80350</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-envelope text-brand-gold"></i>
+                        <span>contact@kapoorvision.com</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-slate-800 mt-12 pt-8 text-center text-sm text-slate-500">
+            &copy; 2024 Kapoor Vision Care. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Updated Floating WhatsApp Button -->
+    <a href="https://wa.me/919334780350" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 transition transform hover:scale-110 z-50 flex items-center gap-2 group">
+        <i class="fab fa-whatsapp text-2xl"></i>
+        <span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 ease-in-out whitespace-nowrap">Chat on WhatsApp</span>
+    </a>
+
+    <!-- Application Logic -->
+    <script>
+        // Mock Data Database
+        const db = [
+            // Frames
+            { id: 101, category: 'frames', brand: 'Ray-Ban', name: 'Ray-Ban Aviator Optics', price: 8500, image: 'https://images.unsplash.com/photo-1577803645773-f96470509666?w=600&q=80', desc: 'Classic pilot shape with gold metal frame.' },
+            { id: 102, category: 'frames', brand: 'Vogue', name: 'Vogue Eyewear VO5276', price: 4200, image: 'https://images.unsplash.com/photo-1591076482161-42ce6da69f67?w=600&q=80', desc: 'Chic cat-eye frames for a modern look.' },
+            { id: 103, category: 'frames', brand: 'Oakley', name: 'Oakley Holbrook RX', price: 9100, image: 'https://images.unsplash.com/photo-1509695507497-903c140c43b0?w=600&q=80', desc: 'Durable O-Matter frame material.' },
+            { id: 104, category: 'frames', brand: 'Titan', name: 'Titan Flex Rimless', price: 3500, image: 'https://images.unsplash.com/photo-1570222094114-28a9d88a27e6?w=600&q=80', desc: 'Ultra-lightweight and flexible.' },
+            { id: 105, category: 'frames', brand: 'Ray-Ban', name: 'Ray-Ban Clubmaster', price: 9500, image: 'https://images.unsplash.com/photo-1514632542320-74f54ebd2731?w=600&q=80', desc: 'Retro style that never goes out of fashion.' },
+            { id: 106, category: 'frames', brand: 'Carrera', name: 'Carrera Rectangular', price: 5600, image: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=600&q=80', desc: 'Sporty yet elegant design.' },
+            { id: 107, category: 'frames', brand: 'Vogue', name: 'Vogue Metallic Round', price: 4800, image: 'https://images.unsplash.com/photo-1559563179-1d4cc3f572c4?w=600&q=80', desc: 'Trendy round metal frames.' },
+            
+            // Sunglasses
+            { id: 201, category: 'sunglasses', brand: 'Ray-Ban', name: 'Ray-Ban Wayfarer Classic', price: 10500, image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600&q=80', desc: 'The most recognizable style in the history of sunglasses.' },
+            { id: 202, category: 'sunglasses', brand: 'Oakley', name: 'Oakley Sutro', price: 11200, image: 'https://images.unsplash.com/photo-1625591348697-399e46a75f85?w=600&q=80', desc: 'Designed with performance in mind.' },
+            { id: 203, category: 'sunglasses', brand: 'Prada', name: 'Prada Cinema', price: 22000, image: 'https://images.unsplash.com/photo-1508296695146-25d6b37a3452?w=600&q=80', desc: 'Luxury eyewear with distinct Italian style.' },
+            { id: 204, category: 'sunglasses', brand: 'Fastrack', name: 'Fastrack Aviator', price: 2500, image: 'https://images.unsplash.com/photo-1581338834647-b0fb40704e21?w=600&q=80', desc: 'Stylish and affordable sun protection.' },
+            { id: 205, category: 'sunglasses', brand: 'Ray-Ban', name: 'Ray-Ban Round Metal', price: 11500, image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&q=80', desc: 'Inspired by the 1960s counter-culture.' },
+            { id: 206, category: 'sunglasses', brand: 'Vogue', name: 'Vogue Gigi Hadid', price: 7800, image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80', desc: 'Exclusive collection designed by Gigi Hadid.' },
+        ];
+
+        // App Logic
+        const app = {
+            state: {
+                currentCategory: 'frames',
+                filters: {
+                    brands: [],
+                    maxPrice: 30000
+                },
+                sortBy: 'default',
+                currentPage: 1,
+                itemsPerPage: 6
+            },
+
+            init: function() {
+                // Initialize range slider listener
+                const range = document.getElementById('price-range');
+                range.addEventListener('input', (e) => {
+                    document.getElementById('price-value').innerText = `₹${e.target.value}`;
+                    this.state.filters.maxPrice = Number(e.target.value);
+                    this.renderListing();
+                });
+                // Set initial max
+                range.max = 30000;
+                range.value = 30000;
+
+                // Handle initial hash
+                this.handleHash();
+                
+                // Listen for hash changes
+                window.addEventListener('hashchange', () => this.handleHash());
+            },
+
+            router: function(hash) {
+                // Push history if clicking a link, otherwise let hashchange handle it
+                if(window.location.hash !== hash) {
+                    window.location.hash = hash;
+                } else {
+                    this.handleHash(); // Force refresh if clicking same link
+                }
+            },
+
+            handleHash: function() {
+                const hash = window.location.hash;
+                
+                // Hide all views
+                document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+
+                if (hash === '' || hash === '#home') {
+                    document.getElementById('home-view').classList.add('active');
+                } else if (hash.startsWith('#product')) {
+                    // Extract ID
+                    const id = parseInt(hash.split('/')[1]);
+                    this.renderProductDetail(id);
+                    document.getElementById('product-view').classList.add('active');
+                } else if (hash === '#frames') {
+                    this.state.currentCategory = 'frames';
+                    this.resetStateForNewCategory();
+                    this.renderListing();
+                    document.getElementById('listing-view').classList.add('active');
+                } else if (hash === '#sunglasses') {
+                    this.state.currentCategory = 'sunglasses';
+                    this.resetStateForNewCategory();
+                    this.renderListing();
+                    document.getElementById('listing-view').classList.add('active');
+                } else {
+                    // Default to home
+                    document.getElementById('home-view').classList.add('active');
+                }
+                
+                // Mobile menu close
+                document.getElementById('mobile-menu').classList.add('hidden');
+            },
+
+            resetStateForNewCategory: function() {
+                this.state.filters.brands = [];
+                this.state.filters.maxPrice = 30000;
+                this.state.sortBy = 'default';
+                this.state.currentPage = 1;
+                document.getElementById('price-range').value = 30000;
+                document.getElementById('price-value').innerText = '₹30000';
+                document.getElementById('sort-select').value = 'default';
+            },
+
+            getFilteredProducts: function() {
+                let items = db.filter(item => item.category === this.state.currentCategory);
+
+                // Filter by Brand
+                if (this.state.filters.brands.length > 0) {
+                    items = items.filter(item => this.state.filters.brands.includes(item.brand));
+                }
+
+                // Filter by Price
+                items = items.filter(item => item.price <= this.state.filters.maxPrice);
+
+                // Sort
+                if (this.state.sortBy === 'price-low') {
+                    items.sort((a, b) => a.price - b.price);
+                } else if (this.state.sortBy === 'price-high') {
+                    items.sort((a, b) => b.price - a.price);
+                }
+
+                return items;
+            },
+
+            renderListing: function() {
+                const title = this.state.currentCategory === 'frames' ? 'Designer Frames' : 'Sunglasses Collection';
+                document.getElementById('listing-title').innerText = title;
+                document.getElementById('page-title-breadcrumb').innerText = this.state.currentCategory;
+
+                // 1. Render Filters
+                const brands = [...new Set(db.filter(i => i.category === this.state.currentCategory).map(i => i.brand))];
+                const brandContainer = document.getElementById('brand-filters');
+                brandContainer.innerHTML = '';
+                brands.forEach(brand => {
+                    const div = document.createElement('div');
+                    div.className = 'flex items-center';
+                    div.innerHTML = `
+                        <input type="checkbox" id="brand-${brand}" value="${brand}" 
+                            ${this.state.filters.brands.includes(brand) ? 'checked' : ''}
+                            class="w-4 h-4 text-brand-blue border-gray-300 rounded focus:ring-brand-accent">
+                        <label for="brand-${brand}" class="ml-2 text-sm text-slate-600 cursor-pointer">${brand}</label>
+                    `;
+                    // Add listener
+                    div.querySelector('input').addEventListener('change', (e) => {
+                        if (e.target.checked) {
+                            this.state.filters.brands.push(brand);
+                        } else {
+                            this.state.filters.brands = this.state.filters.brands.filter(b => b !== brand);
+                        }
+                        this.state.currentPage = 1;
+                        this.renderListing();
+                    });
+                    brandContainer.appendChild(div);
+                });
+
+                // 2. Get Data & Pagination
+                const allItems = this.getFilteredProducts();
+                const totalPages = Math.ceil(allItems.length / this.state.itemsPerPage);
+                
+                const start = (this.state.currentPage - 1) * this.state.itemsPerPage;
+                const paginatedItems = allItems.slice(start, start + this.state.itemsPerPage);
+
+                // 3. Render Grid
+                const grid = document.getElementById('product-grid');
+                grid.innerHTML = '';
+                
+                if (paginatedItems.length === 0) {
+                    grid.innerHTML = '<div class="col-span-3 text-center py-12 text-slate-500">No products match your filters.</div>';
+                }
+
+                paginatedItems.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden card-hover group';
+                    card.innerHTML = `
+                        <div class="relative overflow-hidden h-48 bg-gray-50 flex items-center justify-center p-4">
+                            <img src="${item.image}" alt="${item.name}" class="h-full object-contain mix-blend-multiply transition duration-500 group-hover:scale-110">
+                            <div class="absolute top-2 right-2 bg-white px-2 py-1 rounded-md text-xs font-bold shadow-sm text-brand-blue">
+                                ${item.brand}
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-slate-800 text-lg mb-1 truncate">${item.name}</h3>
+                            <div class="flex items-center justify-between mt-3">
+                                <span class="text-brand-gold font-bold text-lg">₹${item.price}</span>
+                                <button onclick="app.router('#product/${item.id}')" class="text-xs bg-brand-blue text-white px-3 py-2 rounded-full hover:bg-slate-700 transition">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+
+                // 4. Render Pagination
+                const pagContainer = document.getElementById('pagination');
+                pagContainer.innerHTML = '';
+                if (totalPages > 1) {
+                    // Prev
+                    const prev = document.createElement('button');
+                    prev.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                    prev.className = `w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center ${this.state.currentPage === 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-brand-blue hover:text-white transition'}`;
+                    prev.onclick = () => { if(this.state.currentPage > 1) { this.state.currentPage--; this.renderListing(); }};
+                    pagContainer.appendChild(prev);
+
+                    // Numbers
+                    for(let i=1; i<=totalPages; i++) {
+                        const btn = document.createElement('button');
+                        btn.innerText = i;
+                        btn.className = `w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center font-bold ${this.state.currentPage === i ? 'bg-brand-blue text-white' : 'hover:bg-slate-100'}`;
+                        btn.onclick = () => { this.state.currentPage = i; this.renderListing(); };
+                        pagContainer.appendChild(btn);
+                    }
+
+                    // Next
+                    const next = document.createElement('button');
+                    next.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                    next.className = `w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center ${this.state.currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : 'hover:bg-brand-blue hover:text-white transition'}`;
+                    next.onclick = () => { if(this.state.currentPage < totalPages) { this.state.currentPage++; this.renderListing(); }};
+                    pagContainer.appendChild(next);
+                }
+            },
+
+            renderProductDetail: function(id) {
+                const product = db.find(p => p.id === id);
+                if (!product) return;
+
+                document.getElementById('detail-name').innerText = product.name;
+                document.getElementById('detail-breadcrumb').innerText = product.name;
+                document.getElementById('detail-brand').innerText = product.brand;
+                document.getElementById('detail-price').innerText = `₹${product.price}`;
+                document.getElementById('detail-desc').innerText = product.desc;
+                document.getElementById('detail-image').src = product.image;
+                
+                // Setup breadcrumb back link
+                const backLink = document.getElementById('back-to-category');
+                backLink.innerText = product.category;
+                backLink.onclick = () => app.router(`#${product.category}`);
+
+                // Updated Whatsapp link logic with Phone Number
+                const msg = `Hi, I am interested in ${product.name} (₹${product.price}). Is it available?`;
+                document.getElementById('detail-whatsapp').href = `https://wa.me/919334780350?text=${encodeURIComponent(msg)}`;
+            },
+
+            handleSort: function() {
+                this.state.sortBy = document.getElementById('sort-select').value;
+                this.renderListing();
+            },
+
+            resetFilters: function() {
+                this.resetStateForNewCategory();
+                this.renderListing();
+            }
+        };
+
+        // Mobile Menu Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            app.init();
+        });
+
+        // Navbar Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+                nav.classList.replace('py-4', 'py-2');
+                nav.classList.add('transition-all');
+            } else {
+                nav.classList.remove('shadow-md');
+                nav.classList.replace('py-2', 'py-4');
+            }
+        });
+    </script>
+</body>
+</html>
