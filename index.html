@@ -69,6 +69,25 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Instagram Embed Responsive Container */
+        .insta-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 150%; /* Slightly shorter for sidebar fit */
+            height: 0;
+            overflow: hidden;
+            border-radius: 1rem;
+            background: #1e293b;
+        }
+        .insta-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
     </style>
 </head>
 <body class="font-sans text-slate-800 bg-slate-50 antialiased flex flex-col min-h-screen">
@@ -78,8 +97,7 @@
         <div class="container mx-auto px-4 flex justify-between items-center">
             <p><i class="fas fa-truck text-brand-gold mr-2"></i>All Over India Delivery Available</p>
             <div class="flex gap-4">
-                <!-- UPDATED: Instagram Link -->
-                <a href="https://www.instagram.com/kapoorvisioncare" target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold transition"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.instagram.com/kapoor_vision_care" target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold transition"><i class="fab fa-instagram"></i></a>
                 <a href="#" class="hover:text-brand-gold transition"><i class="fab fa-facebook"></i></a>
                 <a href="https://wa.me/c/919334780350" target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold transition"><i class="fab fa-whatsapp"></i></a>
             </div>
@@ -99,7 +117,6 @@
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#home" class="text-slate-600 hover:text-brand-blue font-medium transition">Home</a>
-                    <!-- UPDATED: Redirects to WhatsApp -->
                     <a href="https://wa.me/c/919334780350" target="_blank" rel="noopener noreferrer" class="text-slate-600 hover:text-brand-blue font-medium transition">Frames</a>
                     <a href="https://wa.me/c/919334780350" target="_blank" rel="noopener noreferrer" class="text-slate-600 hover:text-brand-blue font-medium transition">Sunglasses</a>
                     <a href="#about" class="text-slate-600 hover:text-brand-blue font-medium transition">About</a>
@@ -119,7 +136,6 @@
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
             <div class="flex flex-col p-4 space-y-4">
                 <a href="#home" class="text-slate-700 font-medium hover:text-brand-accent">Home</a>
-                <!-- UPDATED: Mobile Menu Redirects -->
                 <a href="https://wa.me/c/919334780350" target="_blank" class="text-slate-700 font-medium hover:text-brand-accent">Frames</a>
                 <a href="https://wa.me/c/919334780350" target="_blank" class="text-slate-700 font-medium hover:text-brand-accent">Sunglasses</a>
                 <a href="#about" class="text-slate-700 font-medium hover:text-brand-accent">About Us</a>
@@ -146,7 +162,6 @@
                         Explore our diverse collection of premium frames, advanced powered lenses, and stylish sunglasses fitting every prescription need.
                     </p>
                     <div class="flex flex-col md:flex-row gap-4 justify-center">
-                        <!-- UPDATED: Hero Buttons Redirect to WhatsApp -->
                         <a href="https://wa.me/c/919334780350" target="_blank" rel="noopener noreferrer" class="bg-brand-gold text-brand-blue px-8 py-3.5 rounded-full font-bold hover:bg-yellow-400 transition shadow-lg text-lg">
                             View Frames
                         </a>
@@ -197,7 +212,6 @@
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <!-- Category 1: Frames - UPDATED CLICK -->
                         <a href="https://wa.me/c/919334780350" target="_blank" class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer">
                             <img src="https://images.unsplash.com/photo-1577803645773-f96470509666?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Frames" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
@@ -205,7 +219,6 @@
                                 <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition">Explore on WhatsApp &rarr;</p>
                             </div>
                         </a>
-                        <!-- Category 2: Power Glasses - UPDATED CLICK -->
                         <a href="https://wa.me/c/919334780350" target="_blank" class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer">
                             <img src="https://images.unsplash.com/photo-1591076482161-42ce6da69f67?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Power Glasses" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
@@ -213,7 +226,6 @@
                                 <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition">Explore on WhatsApp &rarr;</p>
                             </div>
                         </a>
-                        <!-- Category 3: Contact Lenses -->
                         <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer">
                             <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Contact Lenses" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
@@ -221,7 +233,6 @@
                                 <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition">Coming Soon</p>
                             </div>
                         </div>
-                        <!-- Category 4: Sunglasses - UPDATED CLICK -->
                         <a href="https://wa.me/c/919334780350" target="_blank" class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer">
                             <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sunglasses" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
@@ -233,7 +244,7 @@
                 </div>
             </section>
 
-            <!-- Features -->
+            <!-- Features Section with Instagram Integration -->
             <section class="py-16 bg-slate-100 px-4">
                 <div class="container mx-auto">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -261,10 +272,23 @@
                                         <p class="text-sm text-slate-600">100% automatic fitting machines. Zero manual errors, perfect alignment.</p>
                                     </div>
                                 </div>
+                                <!-- Instagram CTA -->
+                                <div class="pt-4">
+                                    <a href="https://www.instagram.com/kapoor_vision_care" target="_blank" class="inline-flex items-center gap-2 text-brand-accent font-bold hover:underline">
+                                        <i class="fab fa-instagram"></i> Follow us for latest Reels &rarr;
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <div class="relative h-full min-h-[400px]">
-                            <img src="https://images.unsplash.com/photo-1562916120-1b20756770e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Optician working" class="rounded-2xl shadow-2xl w-full h-full object-cover">
+                        
+                        <!-- INSTAGRAM VIDEO REPLACES OPTICIAN IMAGE -->
+                        <div class="relative w-full max-w-sm mx-auto md:max-w-none">
+                            <div id="insta-video-container" class="card-hover bg-slate-800 p-2 rounded-2xl border border-slate-200 shadow-2xl overflow-hidden">
+                                <!-- Featured Video will be injected here -->
+                                <div id="insta-featured-video"></div>
+                            </div>
+                            <!-- Decorative element -->
+                            <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl -z-10"></div>
                         </div>
                     </div>
                 </div>
@@ -292,8 +316,7 @@
                 <p class="text-xs text-slate-500 mb-4 uppercase tracking-widest">Unit of Chotanagpur Optical</p>
                 <div class="flex gap-4">
                     <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-accent transition"><i class="fab fa-facebook-f"></i></a>
-                    <!-- UPDATED: Footer Instagram -->
-                    <a href="https://www.instagram.com/kapoorvisioncare" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-accent transition"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/kapoor_vision_care" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-accent transition"><i class="fab fa-instagram"></i></a>
                     <a href="https://wa.me/c/919334780350" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-accent transition"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
@@ -303,7 +326,6 @@
                 <h4 class="text-white font-bold text-lg mb-4">Quick Links</h4>
                 <ul class="space-y-2">
                     <li><a href="#home" class="hover:text-brand-gold transition">Home</a></li>
-                    <!-- UPDATED: Quick Links to WhatsApp -->
                     <li><a href="https://wa.me/c/919334780350" target="_blank" class="hover:text-brand-gold transition">Frames</a></li>
                     <li><a href="https://wa.me/c/919334780350" target="_blank" class="hover:text-brand-gold transition">Sunglasses</a></li>
                     <li><a href="#about" class="hover:text-brand-gold transition">About Us</a></li>
@@ -314,7 +336,7 @@
             <div>
                 <h4 class="text-white font-bold text-lg mb-4">Contact Us</h4>
                 <ul class="space-y-4">
-                    <li class="flex items-start gap-3">
+                    <li cl-ass="flex items-start gap-3">
                         <i class="fas fa-map-marker-alt mt-1 text-brand-gold"></i>
                         <span>1st Floor, Shree Sai Tower, Circular Road, Lalpur, Ranchi, Jharkhand 834001</span>
                     </li>
@@ -324,7 +346,7 @@
                     </li>
                     <li class="flex items-center gap-3">
                         <i class="fas fa-envelope text-brand-gold"></i>
-                        <span>kapoorvisioncare@gmail.com</span>
+                        <span>info@kapoorvisioncare.com</span>
                     </li>
                 </ul>
             </div>
@@ -340,8 +362,37 @@
         <span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 ease-in-out whitespace-nowrap">Explore Catalogue</span>
     </a>
 
-    <!-- Mobile Menu Toggle Script -->
     <script>
+        /**
+         * ADMIN CONTROL: INSTAGRAM VIDEO CONFIGURATION
+         * Change the ID here to update the video shown in the "Why Choose Us" section.
+         */
+        const FEATURED_VIDEO_ID = 'C3XyZxDSm_f'; 
+
+        function renderFeaturedInstagramVideo() {
+            const container = document.getElementById('insta-featured-video');
+            if (!container) return;
+
+            container.innerHTML = `
+                <div class="insta-container">
+                    <iframe 
+                      
+			src="https://www.instagram.com/p/DJt8aGrzoPS/embed"
+                        frameborder="0" 
+                        scrolling="no" 
+                        allowtransparency="true">
+                    </iframe>
+                </div>
+                <div class="p-3 bg-white flex items-center justify-between rounded-b-xl border-t border-slate-100">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Style in Motion</span>
+                    <a href="https://www.instagram.com/reel/${FEATURED_VIDEO_ID}" target="_blank" class="text-brand-blue text-xs font-bold hover:text-brand-accent flex items-center gap-1 transition">
+                        Watch Full Reel <i class="fas fa-external-link-alt text-[8px]"></i>
+                    </a>
+                </div>
+            `;
+        }
+
+        // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
 
@@ -349,23 +400,20 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Close menu on link click
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFeaturedInstagramVideo();
+            
+            // Navbar shadow logic
+            window.addEventListener('scroll', () => {
+                const nav = document.querySelector('nav');
+                if (window.scrollY > 20) {
+                    nav.classList.add('shadow-md');
+                } else {
+                    nav.classList.remove('shadow-md');
+                }
             });
-        });
-
-        // Simple Navbar shadow on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 20) {
-                nav.classList.add('shadow-md');
-            } else {
-                nav.classList.remove('shadow-md');
-            }
         });
     </script>
 </body>
 </html>
-
